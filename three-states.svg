@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 330" role="img" aria-labelledby="t d" font-family="Poppins,Segoe UI,Helvetica,Arial,sans-serif">
+<title id="t">Three states behind the upgrade error</title>
+<desc id="d">Three separate states cause the upgrade message: Roblox itself is outdated, the Delta build no longer matches the new Roblox client, or the local installation is damaged. Each has a different response: update Roblox, wait for a matching build, or replace the local package once.</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#050508"/><stop offset=".48" stop-color="#0b0e0f"/><stop offset="1" stop-color="#223178"/></linearGradient></defs>
+<rect width="1200" height="330" rx="16" fill="url(#g)"/>
+<text x="48" y="58" font-size="15" font-weight="700" letter-spacing="2" fill="#60a5fa">ONE MESSAGE, THREE STATES</text>
+<rect x="48" y="88" width="352" height="200" rx="14" fill="#101827" stroke="#29334c" stroke-width="2"/>
+<text x="72" y="132" font-size="21" font-weight="700" fill="#f7f9ff">Roblox is outdated</text>
+<text x="72" y="164" font-size="14.5" fill="#dbe4f2">Standard Roblox also asks to update</text>
+<rect x="72" y="210" width="304" height="48" rx="10" fill="#0b0e0f" stroke="#29334c" stroke-width="1.5"/>
+<text x="224" y="241" text-anchor="middle" font-size="16" font-weight="600" fill="#f7f9ff">Update Roblox normally</text>
+<rect x="424" y="88" width="352" height="200" rx="14" fill="#101827" stroke="#60a5fa" stroke-width="2"/>
+<text x="448" y="132" font-size="21" font-weight="700" fill="#f7f9ff">Delta lacks compatibility</text>
+<text x="448" y="164" font-size="14.5" fill="#dbe4f2">Roblox opens, Delta fails after the update</text>
+<rect x="448" y="210" width="304" height="48" rx="10" fill="#3156d3" stroke="#29334c" stroke-width="1.5"/>
+<text x="600" y="241" text-anchor="middle" font-size="16" font-weight="600" fill="#f7f9ff">Wait for a matching build</text>
+<rect x="800" y="88" width="352" height="200" rx="14" fill="#101827" stroke="#29334c" stroke-width="2"/>
+<text x="824" y="132" font-size="21" font-weight="700" fill="#f7f9ff">Local install is damaged</text>
+<text x="824" y="164" font-size="14.5" fill="#dbe4f2">A matching build exists, one device still fails</text>
+<rect x="824" y="210" width="304" height="48" rx="10" fill="#0b0e0f" stroke="#29334c" stroke-width="1.5"/>
+<text x="976" y="241" text-anchor="middle" font-size="16" font-weight="600" fill="#f7f9ff">Replace the package once</text>
+</svg>

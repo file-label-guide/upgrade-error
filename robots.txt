@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://upgrade-error.fix-notes.deno.net/sitemap.xml

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>It Worked Until Roblox Updated: The Upgrade Error Explained</title>
+<meta name="description" content="The Delta Executor upgrade error has three separate causes. How to tell an outdated Roblox client from a version mismatch or a damaged install, and when waiting is the fix.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://upgrade-error.fix-notes.deno.net/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="It Worked Until Roblox Updated: The Upgrade Error Explained">
+<meta property="og:description" content="Three states behind one message, the safe order to check them, and when waiting is the fix.">
+<meta property="og:url" content="https://upgrade-error.fix-notes.deno.net/">
+<meta property="og:image" content="https://upgrade-error.fix-notes.deno.net/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#2d3748; --head:#101827; --page:#f7fafc; --line:#dbe2ec; --soft:#eef3ff; --link:#3156d3; --sky:#60a5fa; --hero-text:#f7f9ff; --hero-muted:#dbe4f2; --gold-bg:#3d311d; --gold:#f5d08a; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--page); color:var(--ink); font:17px/1.7 Poppins,"Segoe UI",Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  img { max-width:100%; }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 28px; }
+  .narrow { max-width:740px; }
+  .top { background:#fff; border-bottom:1px solid #e2e8f0; }
+  .top .wrap { padding-top:10px; padding-bottom:10px; display:flex; justify-content:flex-end; }
+  .top img { display:block; height:68px; width:auto; }
+
+  .hero { color:var(--hero-text); padding:72px 0 78px; background:radial-gradient(560px 320px at 50% 0%, rgba(96,165,250,.2), transparent 70%), linear-gradient(135deg,#050508 0%,#0b0e0f 48%,#223178 100%); }
+  .pill { display:inline-block; margin:0 0 20px; padding:7px 14px; border:1px solid rgba(96,165,250,.45); border-radius:9999px; background:rgba(49,86,211,.18); color:var(--sky); font-size:12.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+  h1 { margin:0 0 20px; max-width:800px; font-size:52px; line-height:1.08; font-weight:800; letter-spacing:-.03em; }
+  h1 em { font-style:normal; color:var(--sky); }
+  .lede { margin:0; max-width:640px; font-size:19px; line-height:1.65; color:var(--hero-muted); }
+  .says { display:flex; flex-wrap:wrap; gap:10px; margin:34px 0 0; padding:0; list-style:none; }
+  .says li { padding:9px 14px; border-radius:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); font:600 14.5px/1.3 Consolas,ui-monospace,Menlo,monospace; }
+
+  section { padding:66px 0 0; }
+  section:last-of-type { padding-bottom:84px; }
+  .eyebrow { margin:0 0 8px; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--link); }
+  h2 { margin:0 0 16px; font-size:33px; line-height:1.2; font-weight:700; color:var(--head); letter-spacing:-.02em; }
+  p { margin:0 0 18px; }
+  a { color:var(--link); font-weight:500; text-underline-offset:3px; }
+  figure { margin:28px 0 0; }
+  figure .scroll { overflow-x:auto; border-radius:16px; }
+  figure img { display:block; width:100%; min-width:760px; height:auto; }
+
+  .order { margin:26px 0 0; padding:0; list-style:none; counter-reset:o; display:grid; gap:10px; }
+  .order li { counter-increment:o; position:relative; background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 20px 16px 64px; }
+  .order li::before { content:counter(o); position:absolute; left:18px; top:15px; width:32px; height:32px; border-radius:9999px; background:var(--head); color:#fff; font-weight:700; font-size:15px; display:grid; place-items:center; }
+  .order b { color:var(--head); }
+
+  .two { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; margin-top:26px; }
+  .two div { background:#fff; border:1px solid var(--line); border-left:5px solid var(--link); border-radius:14px; padding:22px 24px; }
+  .two h3 { margin:0 0 6px; font-size:19px; font-weight:700; color:var(--head); }
+  .two p { margin:0; font-size:16px; }
+
+  .avoid { background:linear-gradient(135deg,#2a2112,var(--gold-bg)); color:#fdf6e3; border-radius:22px; padding:38px 40px; }
+  .avoid .eyebrow { color:var(--gold); } .avoid h2 { color:#fff; }
+  .avoid p { color:#eadfc4; max-width:660px; }
+  .avoid ul { margin:8px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 28px; }
+  .avoid li { position:relative; padding-left:28px; font-size:16px; }
+  .avoid li::before { content:"\2715"; position:absolute; left:0; top:0; color:var(--gold); font-weight:700; }
+
+  @media (max-width:860px) {
+    h1 { font-size:37px; } h2 { font-size:26px; } .hero { padding:50px 0 54px; }
+    .two, .avoid ul { grid-template-columns:minmax(0,1fr); }
+    section { padding-top:52px; } .avoid { padding:28px 24px; }
+  }
+  @media (max-width:520px) { .wrap { padding:0 18px; } .top img { height:54px; } h1 { font-size:31px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="./"><img src="logo.png" width="69" height="68" alt="DeltaaExecutor.org logo"></a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="pill">Roblox update error</p>
+    <h1>It worked until <em>Roblox updated</em></h1>
+    <p class="lede">The upgrade message means the installed Roblox client and the Delta build no longer match. It does not mean your installation is broken, and reinstalling the same file will not clear it.</p>
+    <ul class="says" aria-label="Wordings of the same error">
+      <li>Please Upgrade</li>
+      <li>Your version of Roblox may be outdated</li>
+      <li>Update your client to continue</li>
+      <li>Error Code 280</li>
+    </ul>
+  </div>
+</div>
+
+<main>
+
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Work out which one</p>
+        <h2>Three states behind one message</h2>
+        <p>Decide which state you are in before deleting files or reinstalling. Updating Roblox cannot repair Delta compatibility, and reinstalling the same Delta build cannot turn it into a newer one.</p>
+      </div>
+      <figure>
+        <div class="scroll"><img src="three-states.svg" width="1200" height="330" alt="Three states behind the upgrade error: Roblox is outdated, Delta lacks compatibility, or the local install is damaged, each with its own response"></div>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <p class="eyebrow">The safe order</p>
+      <h2>Four checks, in this order</h2>
+      <ol class="order">
+        <li><b>Open the standard Roblox app.</b> If it asks for an update too, update it through Google Play, the App Store or its normal desktop updater.</li>
+        <li><b>Restart the device.</b> This closes the old client process and loads the updated one.</li>
+        <li><b>Check whether a matching release exists.</b> The current package record for each platform is kept on <a href="https://deltaaexecutor.org/">Delta Executor</a>, and a version number copied from any other page may already be stale.</li>
+        <li><b>Test once.</b> If the same message returns and no matching release is listed, stop. Repeated launches cannot produce a missing update.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="narrow">
+        <p class="eyebrow">Two common questions</p>
+        <h2>Waiting and reinstalling</h2>
+      </div>
+      <div class="two">
+        <div><h3>How long is the wait?</h3><p>There is no fixed window. Claims like "12 to 24 hours" cannot account for the platform, the signing step or the size of the Roblox change. Use the normal Roblox app until a matching release is listed.</p></div>
+        <div><h3>When does reinstalling help?</h3><p>Only after a matching release exists and your copy is incomplete or left over from an older package. If every device shows the same message, it is compatibility, not local damage.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="avoid">
+        <p class="eyebrow">Do not do these</p>
+        <h2>Fixes to reject</h2>
+        <p>Each of these trades device security for a launch that may still fail.</p>
+        <ul>
+          <li>Installing an old Roblox bundle to downgrade</li>
+          <li>Turning off antivirus or Play Protect</li>
+          <li>Intercepting update traffic or changing version checks</li>
+          <li>Using an anti-cheat bypass</li>
+          <li>Restoring an unknown DLL</li>
+          <li>Giving administrator access to an unverified file</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
